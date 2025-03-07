@@ -1,23 +1,37 @@
 // hooks/useAuth.ts
 
 import { useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { getAuth, onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
 import { auth } from "../lib/firebase";
 
+// Extend the Firebase User type to include additional properties
+interface User extends FirebaseUser {
+    bio?: string; // Add the bio property
+}
+
 export const useAuth = () => {
-  const [user, setUser] = useState<User | null>(null); // Initialize user and setUser
-  const [loading, setLoading] = useState(true); // Track loading state
+    const [user, setUser] = useState<User | null>(null); // Use the custom User type
+    const [loading, setLoading] = useState(true); // Track loading state
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser); // Update user state
-      setLoading(false); // Mark loading as complete
-    });
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            if (currentUser) {
+                // Here you can fetch additional user data (like bio) from your database
+                const userData: User = {
+                    ...currentUser,
+                    bio: "", // Fetch bio from your database if available
+                };
+                setUser(userData); // Update user state
+            } else {
+                setUser(null); // No user is signed in
+            }
+            setLoading(false); // Mark loading as complete
+        });
 
-    return () => unsubscribe(); // Clean up listener on unmount
-  }, []);
+        return () => unsubscribe(); // Clean up listener on unmount
+    }, []);
 
-  return { user, setUser, loading }; // Return user, setUser, and loading
+    return { user, setUser, loading }; // Return user, setUser, and loading
 };
 
 
