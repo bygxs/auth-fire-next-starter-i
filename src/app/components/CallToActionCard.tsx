@@ -15,7 +15,7 @@ const CallToActionCard = () => {
             href="/login"
             className="px-6 py-3 border rounded-lg shadow-md  border-gray-200 dark:border-gray-700 dark: bg-blue-600 text-white font-semibold  hover:bg-blue-700 transition"
           >
-            login too 2
+            login middleware
           </Link>
           <Link
             href="/auth" /*    href="/components/auth" */
