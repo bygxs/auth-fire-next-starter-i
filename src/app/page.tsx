@@ -19,7 +19,7 @@ export default function Home() {
 
     //  <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 dark:bg-gradient-to-r dark:from-yellow-900 dark:via-green-800 dark:to-gray-700">
 
-    <div className="bg-gradient-to-r from-teal-100 via-red-200 to-blue-300 grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 dark:bg-gradient-to-r dark:from-yellow-900 dark:via-green-800 dark:to-gray-700">
+    <div className="bg-gradient-to-r from-green-100 via-yellow-200 to-red-300 grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 dark:bg-gradient-to-r dark:from-green-900 dark:via-yellow-800 dark:to-red-700">
       <main className="flex flex-col gap-12 max-w-4xl w-full">
      
         {/* Header Section */}
